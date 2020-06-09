@@ -271,23 +271,23 @@ class Handlers
         }
 		
 		
-		if(oSession.oResponse.headers.ExistsAndContains("Content-Type", "audio/mpeg"))
-		{
-			var fileToSave: String = "";
+	if(oSession.oResponse.headers.ExistsAndContains("Content-Type", "audio/mpeg"))
+	{
+		var fileToSave: String = "";
 
-			if (oSession.oResponse.headers.Exists("etag"))
-			{
-				fileToSave = "s:/fiddler-downloads/" + oSession.oResponse.headers["etag"].Replace('"',"") + ".mp3";
-			}
-			else
-			{
-				fileToSave = "s:/fiddler-downloads/" + oSession.Timers.ClientBeginRequest.ToString("yyyy-MM-dd HH-mm-ss") + ".mp3";
-			}
-            
-			oSession.SaveResponseBody(fileToSave);
-			FiddlerObject.alert("File saved to " + fileToSave);
-                
-		}		
+		if (oSession.oResponse.headers.Exists("etag"))
+		{
+			fileToSave = "s:/fiddler-downloads/" + oSession.oResponse.headers["etag"].Replace('"',"") + ".mp3";
+		}
+		else
+		{
+			fileToSave = "s:/fiddler-downloads/" + oSession.Timers.ClientBeginRequest.ToString("yyyy-MM-dd HH-mm-ss") + ".mp3";
+		}
+
+		oSession.SaveResponseBody(fileToSave);
+		FiddlerObject.alert("File saved to " + fileToSave);
+
+	}		
     }
 
 /*
